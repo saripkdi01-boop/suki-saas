@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* Dark mode via class (toggle manual di Topbar), bukan prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar ramping untuk sidebar & tabel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* Leaflet: pastikan peta tidak tertutup elemen UI */
+.leaflet-container {
+  z-index: 0;
+  font-family: inherit;
+}
+.leaflet-popup-content {
+  font-family: inherit;
+  margin: 12px 16px;
+}
+
+/* Print: cetak denah */
+@media print {
+  aside, header, footer, .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+}
